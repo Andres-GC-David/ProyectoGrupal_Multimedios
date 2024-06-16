@@ -2,10 +2,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
 }
 
 #app {
-    display: block; 
+    display: block;
     max-width: none;
     padding: 0;
 }
@@ -52,16 +53,17 @@
     height: 175px;
     width: 100%;
     align-items: center;
-    position: relative; 
+    position: relative;
 }
 
-.recipesBanner::before, .recipesBanner::after {
+.recipesBanner::before,
+.recipesBanner::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    height: 4px; 
-    background-color: rgba(150, 167, 223, 0.5); 
+    height: 4px;
+    background-color: rgba(150, 167, 223, 0.5);
 }
 
 .recipesBanner::before {
@@ -77,16 +79,16 @@
     overflow: hidden;
     position: relative;
 }
-  
+
 .slides {
     display: flex;
     margin-top: 22px;
-    width: 125%; 
+    width: 125%;
     animation: slide 20s infinite;
 }
-  
+
 .slide {
-    width: 25%; 
+    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,41 +104,128 @@
     object-fit: cover;
     display: block;
 }
-  
+
 .slide p {
     text-align: center;
     margin-top: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: black;
 }
-  
+
+.detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.detail-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 90%;
+    max-height: 90%;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: black;
+}
+
+.close-button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    max-width: 100px;
+    margin-top: 20px;
+}
+
+.recipe-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;/
+}
+
+.recipe-image {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+
 @keyframes slide {
-    0% { transform: translateX(0%); }
-    12.5% { transform: translateX(0%); }
-    25% { transform: translateX(-25%); }
-    37.5% { transform: translateX(-25%); }
-    50% { transform: translateX(-50%); }
-    62.5% { transform: translateX(-50%); }
-    75% { transform: translateX(-75%); }
-    87.5% { transform: translateX(-75%); }
-    100% { transform: translateX(0%); }
+    0% {
+        transform: translateX(0%);
+    }
+
+    12.5% {
+        transform: translateX(0%);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    37.5% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    62.5% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-75%);
+    }
+
+    87.5% {
+        transform: translateX(-75%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 .personalizing {
-    background: linear-gradient(to right, #7aa2e7 , #a961f7); 
+    background: linear-gradient(to right, #7aa2e7, #a961f7);
     color: white;
     padding: 20px;
     border-radius: 6px;
-    margin: 20px 0; 
-    text-align: center; 
+    margin: 20px 0;
+    text-align: center;
+
 }
 
 .personalizingContent {
+
     display: flex;
     flex-direction: column;
 }
 
 .upperPersonalizingContent {
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -151,7 +240,7 @@
 .closeButton img {
     width: 25px;
     height: 25px;
-} 
+}
 
 .personalizing h2 {
     font-size: 26px;
@@ -160,14 +249,15 @@
     text-align: left;
 }
 
-.personalizing, p {
+.personalizing,
+p {
     margin-bottom: 20px;
     font-size: 17px;
     text-align: left;
 }
 
 .lowerPersonalizingContent {
-    text-align: center; 
+    text-align: center;
 }
 
 .personalizeButton {
@@ -197,6 +287,8 @@
 
 .recipeImage {
     position: relative;
+    background-color: white;
+
 }
 
 .recipeImage img {
@@ -204,25 +296,34 @@
     height: 350px;
 }
 
+
+
+
 .recipeOfTheDay {
-    position: absolute; 
-    top: 40px; 
-    background-color: rgb(255, 255, 255); 
-    padding: 6px 15px; 
-    border-radius: 4px; 
+    position: absolute;
+    top: 40px;
+    background-color: rgb(255, 255, 255);
+    padding: 6px 15px;
+    border-radius: 4px solid;
+    background-color: white;
     color: black;
+
 }
 
 .recipeDescription {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: white;
+
+
 }
 
 .recipeName {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 12px;
     margin-left: 15px;
+
     color: black;
 }
 
@@ -231,7 +332,7 @@
     gap: 5px;
     font-size: 24px;
     cursor: pointer;
-    direction: rtl; 
+    direction: rtl;
     margin-right: 15px;
 }
 
@@ -245,17 +346,19 @@
     cursor: pointer;
 }
 
-.star-rating input[type="radio"]:checked ~ label {
+.star-rating input[type="radio"]:checked~label {
     color: gold;
 }
 
-.star-rating label:hover, .star-rating label:hover ~ label {
+.star-rating label:hover,
+.star-rating label:hover~label {
     color: gold;
 }
+
 
 @media only screen and (min-width: 768px) {
-    
-    
+
+
     .options {
         display: flex;
         flex-direction: row;
@@ -269,12 +372,12 @@
     .uploadRecipes {
         display: block;
         width: 50%;
-        background: linear-gradient(to right,#a961f7, #7aa2e7); 
+        background: linear-gradient(to right, #a961f7, #7aa2e7);
         color: white;
         padding: 20px;
         border-radius: 6px;
-        margin: 20px 0; 
-        text-align: center; 
+        margin: 20px 0;
+        text-align: center;
     }
 
     .uploadRecipes h2 {
@@ -284,7 +387,8 @@
         text-align: left;
     }
 
-    .uploadRecipes, p {
+    .uploadRecipes,
+    p {
         margin-bottom: 20px;
         font-size: 17px;
     }
@@ -298,4 +402,21 @@
     .recipe {
         width: calc(50% - 10px);
     }
+
+    .detail-content {
+
+        padding: 20px;
+
+    }
+
+    .close-button {
+        background: black;
+        padding: 10px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+        margin-top: 20px;
+    }
+
+
 }
