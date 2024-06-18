@@ -9,6 +9,7 @@ import Recipe from "./components/Recipe.vue";
 import RecipeDetails from "./components/RecipeDetails.vue";
 import { useRecipes } from "./composables/useRecipes.js";
 import ShowDetail from "./components/ShowDetail.vue";
+import Search from "./components/Search.vue";
 
 export default {
   components: {
@@ -19,12 +20,14 @@ export default {
     Recipe,
     RecipeDetails,
     ShowDetail,
+    Search,
   },
 
   setup() {
     const { recipes } = useRecipes();
     const selectedRecipeId = ref(null);
     const showDetail = ref(false);
+    const showSearch = ref(false);
 
     const handleSelectRecipe = (id) => {
       selectedRecipeId.value = id;
@@ -35,12 +38,18 @@ export default {
       showDetail.value = false;
     };
 
+    const toggleSearch = () => {
+      showSearch.value = !showSearch.value;
+    };
+
     return {
       recipes,
       selectedRecipeId,
       showDetail,
       handleSelectRecipe,
       closeDetail,
+      showSearch,
+      toggleSearch,
     };
   },
 };
@@ -48,7 +57,7 @@ export default {
 
 <template>
   <div class="container">
-    <Header></Header>
+    <Header @toggle-search="toggleSearch"></Header>
     <RecipesBanner />
     <div class="options">
       <Personalizing />
@@ -62,8 +71,6 @@ export default {
     <ShowDetail v-if="showDetail" @close="closeDetail">
       <RecipeDetails :recipeId="selectedRecipeId" />
     </ShowDetail>
+    <Search v-if="showSearch" />
   </div>
 </template>
-
-
-
