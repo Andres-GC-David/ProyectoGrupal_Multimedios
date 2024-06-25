@@ -283,6 +283,7 @@ p {
     border-radius: 5px;
     height: 425px;
     margin-bottom: 15px;
+    background-color: aliceblue;
 }
 
 .recipeImage {
@@ -294,11 +295,7 @@ p {
 .recipeImage img {
     width: 100%;
     height: 350px;
-    object-fit: cover;
 }
-
-
-
 
 .recipeOfTheDay {
     position: absolute;
