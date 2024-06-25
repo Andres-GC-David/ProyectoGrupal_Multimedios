@@ -1,5 +1,23 @@
+<template>
+  <div class="recipe">
+    <div class="recipeImage" @click="selectRecipe">
+      <img :src="image" :alt="name" />
+      <div v-if="isRecipeOfTheDay" class="recipeOfTheDay">
+        Recipe of the Day
+      </div>
+    </div>
+    <div class="recipeDescription">
+      <div class="recipeName">
+        {{ name }}
+      </div>
+      <StarRating :initialFavorite="isFavorited" @update-favorite="toggleFavorite" />
+    </div>
+  </div>
+</template>
+
 <script>
 import StarRating from "./StarRating.vue";
+
 export default {
   props: {
     image: {
@@ -18,6 +36,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isFavorited: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     StarRating,
@@ -26,27 +48,9 @@ export default {
     selectRecipe() {
       this.$emit("select-recipe", this.id);
     },
+    toggleFavorite(isFavorite) {
+      this.$emit("toggle-favorite", { id: this.id, isFavorite });
+    },
   },
 };
 </script>
-
-<template>
-  <div class="recipe" @click="selectRecipe">
-    <div class="recipeImage">
-      <img :src="image" :alt="name" />
-      <div v-if="isRecipeOfTheDay" class="recipeOfTheDay">
-        Recipe of the Day
-      </div>
-    </div>
-    <div class="recipeDescription">
-      <div class="recipeName">
-        {{ name }}
-      </div>
-      <StarRating />
-    </div>
-  </div>
-</template>
-
-
-
-
