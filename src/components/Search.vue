@@ -3,18 +3,24 @@ import { ref } from "vue";
 import axios from "axios";
 import Recipe from "./Recipe.vue";
 import Modal from "./Modal.vue";
+import RecipeDetails from "./RecipeDetails.vue";
+import ShowDetail from "./ShowDetail.vue";
 import "@/styles/style.css";
 
 export default {
   components: {
     Recipe,
     Modal,
+    RecipeDetails,
+    ShowDetail,
   },
   setup() {
     const searchTerm = ref("");
     const searchResults = ref([]);
     const error = ref(null);
     const isModalOpen = ref(false);
+    const selectedRecipeId = ref(null);
+    const showDetail = ref(false);
 
     const searchRecipes = async () => {
       try {
@@ -41,6 +47,15 @@ export default {
       isModalOpen.value = false;
     };
 
+    const handleSelectRecipe = (id) => {
+      selectedRecipeId.value = id;
+      showDetail.value = true;
+    };
+
+    const closeDetail = () => {
+      showDetail.value = false;
+    };
+
     return {
       searchTerm,
       searchResults,
@@ -48,6 +63,10 @@ export default {
       isModalOpen,
       searchRecipes,
       closeModal,
+      selectedRecipeId,
+      showDetail,
+      handleSelectRecipe,
+      closeDetail,
     };
   },
 };
@@ -62,9 +81,19 @@ export default {
     <div v-if="error" class="error">{{ error }}</div>
     <Modal :isOpen="isModalOpen" @close="closeModal">
       <div class="recipes" v-if="searchResults.length">
-        <Recipe v-for="recipe in searchResults" :key="recipe.id" :image="recipe.image" :name="recipe.name" :id="recipe.id" :isRecipeOfTheDay="recipe.isRecipeOfTheDay" />
+        <Recipe 
+          v-for="recipe in searchResults" 
+          :key="recipe.id" 
+          :image="recipe.image" 
+          :name="recipe.name" 
+          :id="recipe.id" 
+          :isRecipeOfTheDay="recipe.isRecipeOfTheDay" 
+          @click="handleSelectRecipe(recipe.id)" />
       </div>
       <div v-if="!searchResults.length && !error" class="no-results">No results to display.</div>
     </Modal>
+    <ShowDetail v-if="showDetail" @close="closeDetail">
+      <RecipeDetails :recipeId="selectedRecipeId" />
+    </ShowDetail>
   </div>
 </template>
