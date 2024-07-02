@@ -4,11 +4,7 @@ import axios from 'axios';
 export function useRecipes() {
   const recipes = ref([]);
   const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-
-  const getRandomLetter = () => {
-    return letters[Math.floor(Math.random() * letters.length)];
-  };
-
+  
   const getRandomLetters = (count) => {
     const selectedLetters = new Set();
     while (selectedLetters.size < count) {
